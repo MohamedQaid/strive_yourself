@@ -8,11 +8,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CustomAppBar(
-        title: 'AppBar',
+        title: 'جاهد نفسك',
       ),
-      body: Center(
-        child: Text('home screen '),
-      ),
+      body: Stack(
+        children:[ 
+          
+          Center(
+          child: Text('home screen '),
+        ),
+      ]),
     );
   }
 }
