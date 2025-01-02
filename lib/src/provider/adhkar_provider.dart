@@ -22,4 +22,12 @@ class AdhkarProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void decreaseCount(String id) {
+    final index = _adhkar.indexWhere((adhkar) => adhkar.id == id);
+    if (index != -1 && _adhkar[index].remainingCount > 0) {
+      _adhkar[index].remainingCount--;
+      notifyListeners();
+    }
+  }
 }

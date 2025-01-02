@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:strive_yourself/src/views/widgets/custom/custom_Text_dhkar.dart';
 // import 'package:provider/provider.dart';
 
 import '../../models/adhkar_model.dart';
 import '../../provider/adhkar_provider.dart';
+import '../widgets/custom/custom_button_count_dhkar.dart';
 import '../widgets/w_background.dart';
 import '../widgets/w_custom_circular_progress_indicator.dart';
 import '../widgets/wc_app_bar.dart';
@@ -19,7 +21,7 @@ class ViewDhkarScreen extends StatelessWidget {
   final String nameFileAdhkar;
   @override
   Widget build(BuildContext context) {
-    final provAdhkar = Provider.of<AdhkarProvider>(context);
+    final provAdhkar = Provider.of<AdhkarProvider>(context, listen: false);
 
     return Scaffold(
       appBar: const CustomAppBar(
@@ -30,7 +32,7 @@ class ViewDhkarScreen extends StatelessWidget {
         FutureBuilder(
           future: provAdhkar.loadAdhkar(nameFileAdhkar),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return const CustomCircularProgressIndicator();
             } else {
               final adhkarList = provAdhkar.adhkar;
@@ -73,10 +75,41 @@ class CardAdhkar extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                    child: Text(
-                  dhkar.dhikr,
-                  style: const TextStyle(color: Colors.white),
+                    child: CustomTextDhkar(
+                  fontSize: 14,
+                  textString: dhkar.dhikr,
                 )),
+                // !
+                CustomTextDhkar(
+                    fontSize: 8,
+                    colorText: const Color(0xffD4AF37),
+                    textString: 'المصدر : ${dhkar.reference}')
+                //!
+                ,
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: const BoxDecoration(
+                      color: Color(0xff082026),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(25))),
+                  child: CustomTextDhkar(
+                    textString: 'الفضل : ${dhkar.description}  ',
+                    fontSize: 12,
+                  ),
+                ),
+//!
+
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: CustomButtonCountDhkar(dhkar: dhkar),
+                    ),
+                  ],
+                )
               ],
             ),
           );
