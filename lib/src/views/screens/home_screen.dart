@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:strive_yourself/src/provider/adhkar_provider.dart';
-import 'package:strive_yourself/src/views/screens/view_dhkar_screen.dart';
-import '../../models/adhkar_model.dart';
 import '../widgets/custom/custom_card_section_adhkar.dart';
 import '../widgets/w_background.dart';
-import '../widgets/w_custom_circular_progress_indicator.dart';
 import '../widgets/wc_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -59,32 +54,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// class HomeScreen extends StatelessWidget {
-//   const HomeScreen({super.key, this.nameFileAdhkarJson = 'adhkar_sabah'});
-//   final String nameFileAdhkarJson;
-//   @override
-//   Widget build(BuildContext context) {
-//     final provAdhkar = Provider.of<AdhkarProvider>(context);
-
-//     return Scaffold(
-//       appBar: const CustomAppBar(
-//         title: 'جاهد نفسك',
-//       ),
-//       body: Stack(children: [
-//         const Background(),
-//         FutureBuilder(
-//           future: provAdhkar.loadAdhkar(nameFileAdhkarJson),
-//           builder: (context, snapshot) {
-//             if (snapshot.connectionState == ConnectionState.done) {
-//               return const CustomCircularProgressIndicator();
-//             } else {
-//               final adhkarList = provAdhkar.adhkar;
-//               return ViewDhkarScreen(adhkarList: adhkarList);
-//             }
-//           },
-//         )
-//       ]),
-//     );
-//   }
-// }

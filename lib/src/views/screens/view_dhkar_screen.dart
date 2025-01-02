@@ -6,6 +6,7 @@ import 'package:strive_yourself/src/views/widgets/custom/custom_Text_dhkar.dart'
 
 import '../../models/adhkar_model.dart';
 import '../../provider/adhkar_provider.dart';
+import '../widgets/custom/custom_button_copy_dhkar.dart';
 import '../widgets/custom/custom_button_count_dhkar.dart';
 import '../widgets/w_background.dart';
 import '../widgets/w_custom_circular_progress_indicator.dart';
@@ -52,7 +53,7 @@ class CardAdhkar extends StatelessWidget {
   final List<AdhkarModel> adhkarList;
   @override
   Widget build(BuildContext context) {
-    // final providerAdhkar = Provider.of<ProviderAdhkar>(context, listen: false);
+    final providerAdhkar = Provider.of<AdhkarProvider>(context, listen: false);
 
     return SizedBox(
       height: double.infinity,
@@ -83,9 +84,8 @@ class CardAdhkar extends StatelessWidget {
                 CustomTextDhkar(
                     fontSize: 8,
                     colorText: const Color(0xffD4AF37),
-                    textString: 'المصدر : ${dhkar.reference}')
+                    textString: 'المصدر : ${dhkar.reference}'),
                 //!
-                ,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: const BoxDecoration(
@@ -101,13 +101,19 @@ class CardAdhkar extends StatelessWidget {
                   ),
                 ),
 //!
-
                 Row(
                   children: [
                     Expanded(
                       flex: 2,
                       child: CustomButtonCountDhkar(dhkar: dhkar),
                     ),
+                    Expanded(
+                      flex: 1,
+                      child: CustomButtonCopyDhkar(
+                        dhkar: dhkar,
+                        providerAdhkar: providerAdhkar,
+                      ),
+                    )
                   ],
                 )
               ],

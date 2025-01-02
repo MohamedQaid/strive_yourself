@@ -30,4 +30,9 @@ class AdhkarProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> copyDhkar(String dhkar) async {
+    await Clipboard.setData(ClipboardData(text: dhkar)); 
+    notifyListeners(); 
+  }
 }
