@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
@@ -53,12 +54,31 @@ class CardAdhkar extends StatelessWidget {
 
     return SizedBox(
       height: double.infinity,
-      child: ListView.builder(
+      child: CarouselSlider.builder(
         itemCount: adhkarList.length,
-        itemBuilder: (BuildContext context, int index) {
+        options: CarouselOptions(
+          scrollDirection: Axis.vertical,
+          enlargeCenterPage: true,
+        ),
+        itemBuilder: (context, index, realIndex) {
           final dhkar = adhkarList[index];
-          return Card(
-            child: Text(dhkar.dhikr),
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+            decoration: BoxDecoration(
+                color: const Color(0xff051519),
+                borderRadius: BorderRadius.circular(24)),
+            child: Column(
+              children: [
+                Expanded(
+                    child: Text(
+                  dhkar.dhikr,
+                  style: const TextStyle(color: Colors.white),
+                )),
+              ],
+            ),
           );
         },
       ),
