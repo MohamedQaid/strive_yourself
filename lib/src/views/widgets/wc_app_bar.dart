@@ -19,11 +19,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
             onPressed: () {
-              showBottomSheet(
+              showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const CustomBottomSheet();
-                  });
+                    return DraggableScrollableSheet(
+                        initialChildSize: 0.3,
+                        minChildSize: 0.2,
+                        maxChildSize: 0.8,
+                        expand: false,
+                        builder: (BuildContext context,
+                            ScrollController scrollController) {
+                          return const CustomBottomSheet();
+                        });
+                  },
+                  isScrollControlled: true);
             },
             icon: const Icon(Icons.text_fields_rounded))
       ],
