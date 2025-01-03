@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:strive_yourself/src/provider/adhkar_provider.dart';
 
 import '../../../models/adhkar_model.dart';
+import '../../../provider/font_app_provider.dart';
 
 class CustomButtonCopyDhkar extends StatelessWidget {
   const CustomButtonCopyDhkar({
@@ -15,13 +17,17 @@ class CustomButtonCopyDhkar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontProvider = context.watch<FontAppProvider>();
+
     return GestureDetector(
       onTap: () {
         providerAdhkar.copyDhkar(dhkar.dhikr);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             showCloseIcon: true,
             backgroundColor: Colors.cyan,
-            content: Text(style: TextStyle(), 'تم نسخ الذكر')));
+            content: Text(
+                style: TextStyle(fontFamily: fontProvider.selectedFont),
+                'تم نسخ الذكر')));
       },
       child: Container(
         margin: const EdgeInsets.only(

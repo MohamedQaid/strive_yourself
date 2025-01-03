@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:strive_yourself/src/provider/font_app_provider.dart';
 
 class CustomBottomSheet extends StatelessWidget {
-  const CustomBottomSheet({super.key});
+  const CustomBottomSheet({super.key, required this.scrollController});
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
+    final fontProvider = context.watch<FontAppProvider>();
     return BottomSheet(
       onClosing: () {},
       builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          width: double.infinity,
-          // height: MediaQuery.of(context).size.height / 1.9,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(24), topRight: Radius.circular(24)),
-            // color: Colors.blueAccent,
-          ),
-          child: const Column(
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
             children: [
-              Text('اختار نوع الخط'),
-
-              
+              const Text('اختار نوع الخط'),
+              Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                    itemCount: fontProvider.nameFontsList.length,
+                    itemBuilder: (context, index) {
+                      final nameFont = fontProvider.nameFontsList[index];
+                      return ListTile(
+                        title: Text(
+                          'هاذا نص تجريبي',
+                          style: TextStyle(fontFamily: nameFont),
+                        ),
+                        trailing: fontProvider.selectedFont == nameFont
+                            ? const Icon(
+                                Icons.check_circle_outline_rounded,
+                                color: Colors.green,
+                              )
+                            : const Icon(Icons.highlight_off_rounded),
+                            onTap: () =>  fontProvider.changeFont(nameFont),
+                      );
+                    }),
+              )
             ],
           ),
         );

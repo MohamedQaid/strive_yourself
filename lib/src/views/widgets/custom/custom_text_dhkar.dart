@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../provider/font_app_provider.dart';
 
 class CustomTextDhkar extends StatelessWidget {
   const CustomTextDhkar({
@@ -14,6 +17,7 @@ class CustomTextDhkar extends StatelessWidget {
   final Color colorText;
   @override
   Widget build(BuildContext context) {
+    final fontProvider = context.watch<FontAppProvider>();
 
     return Center(
       child: Text(
@@ -24,6 +28,7 @@ class CustomTextDhkar extends StatelessWidget {
         style: TextStyle(
             color: colorText,
             fontSize: fontSize,
+            fontFamily: fontProvider.selectedFont
     ),
       ),
     );

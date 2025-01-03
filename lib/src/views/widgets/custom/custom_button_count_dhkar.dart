@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:strive_yourself/src/provider/adhkar_provider.dart';
 
 import '../../../models/adhkar_model.dart';
+import '../../../provider/font_app_provider.dart';
 
 class CustomButtonCountDhkar extends StatelessWidget {
   const CustomButtonCountDhkar({
@@ -16,6 +17,8 @@ class CustomButtonCountDhkar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerAdhkar = context.watch<AdhkarProvider>();
+        final fontProvider = context.watch<FontAppProvider>();
+
     return GestureDetector(
       onTap: () {
         providerAdhkar.decreaseCount(dhkar.id);
@@ -31,7 +34,11 @@ class CustomButtonCountDhkar extends StatelessWidget {
             color: Colors.blueGrey, borderRadius: BorderRadius.circular(16)),
         child: Consumer<AdhkarProvider>(
             builder: (context, value, child) =>
-                Text(dhkar.remainingCount.toString())),
+                Text(dhkar.remainingCount.toString()
+                , style: TextStyle(fontFamily: fontProvider.selectedFont),
+                )
+                
+                ),
       ),
     );
   }

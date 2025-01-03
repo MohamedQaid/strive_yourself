@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/font_app_provider.dart';
 import '../../screens/view_dhkar_screen.dart';
 
 class CustomCardSectionAdhkar extends StatelessWidget {
@@ -16,7 +18,7 @@ class CustomCardSectionAdhkar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final fontProvider = context.watch<FontAppProvider>();
+    final fontProvider = context.watch<FontAppProvider>();
 
     return GestureDetector(
       onTap: () {
@@ -53,7 +55,7 @@ class CustomCardSectionAdhkar extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
-                // fontFamily: fontProvider.selectedFont,
+                fontFamily: fontProvider.selectedFont,
                 shadows: [
                   BoxShadow(
                     offset: const Offset(-2.0, 2.0),

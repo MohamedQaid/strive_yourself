@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:strive_yourself/src/provider/adhkar_provider.dart';
+import 'package:strive_yourself/src/provider/font_app_provider.dart';
 import 'package:strive_yourself/src/views/screens/home_screen.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AdhkarProvider())
+        ChangeNotifierProvider(create: (context) => AdhkarProvider()),
+        ChangeNotifierProvider(create: (context) => FontAppProvider())
       ],
       child: MaterialApp(
         theme: ThemeData(
