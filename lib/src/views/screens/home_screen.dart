@@ -27,7 +27,9 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: 'أذكاري',
+      ),
       body: Stack(
         children: [
           const Background(),

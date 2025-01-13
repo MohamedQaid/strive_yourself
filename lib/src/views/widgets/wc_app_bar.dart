@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:strive_yourself/src/provider/font_app_provider.dart';
 import 'package:strive_yourself/src/views/widgets/custom/custom_bottom_sheet.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,8 +15,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provFont = context.watch<FontAppProvider>();
     return AppBar(
-      title: Text("$title"),
+      title: Text(
+        "$title",
+        style: TextStyle(
+            fontWeight: FontWeight.w600, fontFamily: provFont.selectedFont),
+      ),
+      centerTitle: true,
 // actions: actions,
       actions: [
         IconButton(
