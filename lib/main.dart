@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:strive_yourself/src/provider/adhkar_provider.dart';
+import 'package:strive_yourself/src/provider/bnbar_provider.dart';
 import 'package:strive_yourself/src/provider/font_app_provider.dart';
-import 'package:strive_yourself/src/views/screens/home_screen.dart';
+import 'package:strive_yourself/src/views/widgets/w_bnbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,14 +17,15 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AdhkarProvider()),
-        ChangeNotifierProvider(create: (context) => FontAppProvider())
+        ChangeNotifierProvider(create: (context) => FontAppProvider()),
+        ChangeNotifierProvider(create: (context) => BNBarProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: const WBNBar(),
       ),
     );
   }
